@@ -10,7 +10,7 @@ var i = 0;
         {
             switch (current.dataset.type) {
                 case 'email':
-                    if(!validateEmail(current.value))
+                    if(!this.validateEmail(current.value))
                     {
                         console.log("Email doesn't seems to be correct");
                     }
@@ -18,36 +18,54 @@ var i = 0;
                 case 'text':
                 if(current.dataset.min&&current.dataset.max)
                 {
-                    if(!(current.dataset.min>current.value.length||current.dataset.max<current.value.length))
-                    {
-                    console.log("The name doesn't confer to the size prescribed");
-                    }
+                if(!(current.dataset.min<current.value.length||current.dataset.max>current.value.length))
+                {
+                console.log("The name doesn't confer to the size prescribed");
+                }
                 }
                 else
                 {
                     console.log('make sure the data-min, data-max defined in the tag is valid one supported by valid8');
                 }
-
+                break;
                 case 'name':
-                if(hasNumber(current.value))
+                if(this.hasNumber(current.value))
                 {
                     console.log("Name should'nt contain any number");    
-                }                
+                }
+                break;
+                case 'password':
+                         if(current.dataset.mode)
+                         {
+                             if(current.dataset.mode=="alpha")
+                             {
+                                 if(!this.isAlphanumeric(current.value))
+                                 {
+                                    console.log("Password should be an alphanumeric one.");
+                                 }
+                             }
+                         }
+                break;
                 default:
-                 //   console.log('make sure the type defined inside the data-type is valid one supported by valid8');
-                    break;
+                  console.log('make sure the type defined inside the data-type is valid one supported by valid8');
+                break;
             }
         }
      i++;
     }
-
-}
 };
-function validateEmail(email) {
+this.validateEmail = function(email){
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    return re.test(String(email).toLowerCase()); 
+};
+this.hasNumber = function(myString){
+    return /\d/.test(myString);
+
+};
+
+this.isAlphanumeric=function(myString)
+{
+return /^[a-z0-9]+$/i.test(myString);
 }
 
-function hasNumber(myString) {
-    return /\d/.test(myString);
-  }
+};

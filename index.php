@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Example </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +13,8 @@
       <input type="text" data-type="email" id=email>
       <input data-type="text" type="text" data-min="5" data-max="10" >
       <input data-type="name" type="text" data-min="5" data-max="10" >
-      
+      <input data-type="password" type="text" data-mode="alpha" data-min="5" data-max="10" >
+
       <button type="button" onclick="new valid8('sampleform').check();" id="sbmt">Ok</button>
 
       </form>
